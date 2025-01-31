@@ -225,7 +225,7 @@ class HDLoadoutMenu2:GenericMenu{
 							workingstring==cvar.findcvar("hd_loadout"..cursy).getstring()
 						){
 							MenuSound("menu/choose");
-							cvar.findcvar("playerclass").setstring(Stringtable.Localize("$LOADOUTMENU_LOADOUT")..cursy);
+							cvar.findcvar("playerclass").setstring("Loadout "..cursy);
 							Menu.SetMenu("PlayerclassMenu");
 						}else{
 							statustext(Stringtable.Localize("$LOADOUTMENU_SAVEFIRST"));
@@ -580,7 +580,7 @@ class HDNewGameLoadoutMenu2:HDLoadoutMenu2{
 			return true;
 		case MKEY_Enter:
 			MenuSound("menu/choose");
-			cvar.findcvar("playerclass").setstring(Stringtable.Localize("$LOADOUTMENU_LOADOUT")..cursy);
+			cvar.findcvar("playerclass").setstring("Loadout "..cursy);
 			Menu.SetMenu("PlayerclassMenu");
 			return true;
 		case MKEY_PageUp:
