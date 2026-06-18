@@ -48,6 +48,7 @@ class HDLoadoutMenu2:GenericMenu{
 
 		int jw=0;int jp=0;
 		for(int i=0;i<allactorclasses.size();i++){
+			//can't use the HDHandlers list here
 			class<actor> reff=allactorclasses[i];
 			if(reff is "HDPickup"){
 				let ref=getdefaultbytype((class<hdpickup>)(reff));
@@ -70,7 +71,7 @@ class HDLoadoutMenu2:GenericMenu{
 					string lrefid=ref.refid.makelower();
 					refids.push(lrefid);
 					nicenames.push(ref.gettag());
-					if(reff is "HDBackpack")bprefids.push(lrefid);
+					if(reff is "HDStorageItem")bprefids.push(lrefid);
 					if(!(jw%5))reflist="\n"..reflist;jw++;
 
 					//determine colour
@@ -83,9 +84,9 @@ class HDLoadoutMenu2:GenericMenu{
 
 					//treat wimpy weapons as inventory items
 					if(ref.bwimpy_weapon)
-						reflist=reflist..refidcol..ref.refid.."\cj   "..rgt;
+						reflist=reflist..refidcol..lrefid.."\cj   "..rgt;
 					else
-						reflist=refidcol..ref.refid.."\cj   "..rgt..reflist;
+						reflist=refidcol..lrefid.."\cj   "..rgt..reflist;
 				}
 			}
 		}
@@ -102,6 +103,13 @@ class HDLoadoutMenu2:GenericMenu{
 		case MKEY_Right:
 			cursx=min(workingstring.length(),cursx+1);
 			break;
+//TODO: uncomment these once 5.0 is out!
+//		case MKEY_Home:
+//			cursx=0;
+//			break;
+//		case MKEY_End:
+//			cursx=workingstring.length();
+//			break;
 		case MKEY_Clear: //backspace
 			if(cursx>0){
 				workingstring=workingstring.left(cursx-1)..workingstring.mid(cursx);
